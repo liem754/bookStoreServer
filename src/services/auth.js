@@ -34,3 +34,37 @@ export const register = ({ name, email, password }) =>
       reject(error);
     }
   });
+export const login = ({ email, password }) =>
+  new Promise(async (resolve, reject) => {
+    try {
+      const response = await db.User.findOne({
+        where: { email },
+        raw: true,
+      });
+      const isChecked =
+        response && bcrypt.compareSync(password, response.password);
+      const token = isChecked
+        ? jwt.sign(
+            {
+              id: response.id,
+              email: response.email,
+              role: response.role,
+            },
+            process.env.JWT_KEY,
+            { expiresIn: "2d" }
+          )
+        : null;
+
+      resolve({
+        err: token ? 0 : 1,
+        mes: token
+          ? "Login is success!"
+          : response
+          ? "Password is wrong!"
+          : "Email not used!",
+        access_token: `Bearer ${token}` || token,
+      });
+    } catch (error) {
+      reject(error);
+    }
+  });
