@@ -1,8 +1,14 @@
-const user = require("./user");
+const { handleNotFound } = require("../middlewares/handle_error");
+import auth from "./auth";
+import user from "./user";
+import insert from "./insert";
+import book from "./book";
 const initRouter = (app) => {
+  app.use("/api/v1/auth", auth);
   app.use("/api/v1/user", user);
-  return app.use("/", (req, res) => {
-    return res.send("server on ..");
-  });
+  app.use("/api/v1/insert", insert);
+  app.use("/api/v1/book", book);
+
+  app.use(handleNotFound);
 };
 module.exports = initRouter;

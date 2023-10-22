@@ -1,35 +1,82 @@
+import { handleServerError } from "../middlewares/handle_error";
 import * as sv from "../services";
-export const register = async (req, res) => {
+export const getCurrent = async (req, res) => {
   try {
-    const { email, name, password } = req.body;
-    if (!email || !name || !password)
-      return res.status(400).json({
-        err: -1,
-        mes: "Mising input!",
-      });
-    const response = await sv.register(req.body);
+    const { id } = req.user;
+    const response = await sv.getOne(id);
     return res.status(200).json(response);
   } catch (error) {
-    return res.status(500).json({
-      err: -1,
-      mes: "Failed server!",
-    });
+    return handleServerError(res);
   }
 };
-export const login = async (req, res) => {
+export const updateCart = async (req, res) => {
+  const { id } = req.user;
+  const { pid, price, quantity } = req.body;
   try {
-    const { email, password } = req.body;
-    if (!email || !password)
+    if (!pid || !price || !quantity)
       return res.status(400).json({
         err: -1,
-        mes: "Mising input!",
+        mes: "Missing Input",
       });
-    const response = await sv.login(req.body);
+    // console.log(id);
+    // console.log(req.body);
+    const response = await sv.updateCarts(req.body, id);
     return res.status(200).json(response);
   } catch (error) {
-    return res.status(500).json({
-      err: -1,
-      mes: "Failed server!",
-    });
+    return handleServerError(res);
+  }
+};
+export const getCarts = async (req, res) => {
+  const { id } = req.user;
+  try {
+    // console.log(id);
+    // console.log(req.body);
+    const response = await sv.getCarts(id);
+    return res.status(200).json(response);
+  } catch (error) {
+    return handleServerError(res);
+  }
+};
+export const deleteCart = async (req, res) => {
+  const { id } = req.body;
+  try {
+    // console.log(id);
+    // console.log(req.body);
+    const response = await sv.deleteCart(id);
+    return res.status(200).json(response);
+  } catch (error) {
+    return handleServerError(res);
+  }
+};
+export const contact = async (req, res) => {
+  const { email, messege } = req.body;
+  try {
+    if (!email || !messege)
+      return res.status(400).json({
+        err: -1,
+        mes: "Missing input",
+      });
+    const response = await sv.contact(req.body);
+    return res.status(200).json(response);
+  } catch (error) {
+    return handleServerError(res);
+  }
+};
+export const updateUser = async (req, res) => {
+  const { email, name } = req.body;
+  const { id } = req.user;
+  try {
+    if (!email || !name)
+      return res.status(400).json({
+        err: -1,
+        mes: "Missing input",
+      });
+
+    let data = { email, name };
+    if (req.file) data.avatar = req.file.path;
+    const response = await sv.updateUser(data, id);
+    return res.status(200).json(response);
+  } catch (error) {
+    return handleServerError(res);
   }
 };
