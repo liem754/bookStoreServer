@@ -5,11 +5,10 @@ export const insertDB = () =>
   new Promise(async (resolve, reject) => {
     try {
       dataRole.forEach(async (item, index) => {
-        console.log(item);
-        // await db.Role.create({
-        //   code: item.code,
-        //   value: item.value,
-        // });
+        await db.Role.create({
+          code: item.code,
+          value: item.value,
+        });
       });
       resolve("ok");
     } catch (error) {
