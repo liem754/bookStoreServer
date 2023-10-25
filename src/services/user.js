@@ -31,9 +31,8 @@ export const updateCarts = (data, id) =>
   new Promise(async (resolve, reject) => {
     try {
       const alreadyCart = await db.Cart.findOne({
-        where: { product: data.pid },
+        where: { product: `${data.pid}` },
       });
-      console.log(alreadyCart);
 
       if (!alreadyCart) {
         const rs = await db.Cart.create({
@@ -50,9 +49,9 @@ export const updateCarts = (data, id) =>
         const rss = await db.Cart.update(
           {
             price: data.price,
-            quantity: data.quantity,
+            quantity: +data.quantity,
           },
-          { where: { product: data.pid } }
+          { where: { product: `${data.pid}` } }
         );
         resolve({
           success: rss ? true : false,
