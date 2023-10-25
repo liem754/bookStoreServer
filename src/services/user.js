@@ -37,9 +37,9 @@ export const updateCarts = (data, id) =>
 
       if (!alreadyCart) {
         const rs = await db.Cart.create({
-          product: data.pid,
+          product: `${data.pid}`,
           price: data.price,
-          quantity: data.quantity,
+          quantity: +data.quantity,
           userId: `${id}`,
         });
         resolve({
