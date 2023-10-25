@@ -75,7 +75,7 @@ const getBook = (bid) =>
   new Promise(async (resolve, reject) => {
     try {
       const rs = await db.Book.findOne({
-        where: { id: +bid },
+        where: { id: bid },
 
         // include: [
         //   {
