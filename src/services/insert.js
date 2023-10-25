@@ -1,6 +1,6 @@
 import data from "../data/amazon.books.json";
 import { dataRole } from "../ultils/data";
-
+import db from "../models";
 export const insertDB = () =>
   new Promise(async (resolve, reject) => {
     try {
