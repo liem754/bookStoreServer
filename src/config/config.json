@@ -1,25 +1,32 @@
 {
   "development": {
-    "username": "root",
-    "password": null,
-    "database": "learnnodejs",
-    "host": "127.0.0.1",
-    "dialect": "mysql",
+    "username": "db_bookstoreliem_user",
+    "password": "aSqNBKCSM3jSAyx09glLuXMit6maADRG",
+    "database": "db_bookstoreliem",
+
+    "host": "dpg-cksec090at9c73cs3ia0-a.singapore-postgres.render.com",
+    "dialect": "postgres",
     "logging": false,
-    "timezone": "+07:00"
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    }
   },
-  "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
-  },
+
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "database_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "db_bookstoreliem_user",
+    "password": "aSqNBKCSM3jSAyx09glLuXMit6maADRG",
+    "database": "db_bookstoreliem",
+    "host": "dpg-cksec090at9c73cs3ia0-a.singapore-postgres.render.com",
+    "dialect": "postgres",
+    "logging": false,
+    "dialectOptions": {
+      "ssl": {
+        "require": true,
+        "rejectUnauthorized": false
+      }
+    }
   }
 }

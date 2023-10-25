@@ -23,7 +23,7 @@ module.exports = {
       },
       role: {
         type: Sequelize.STRING,
-        defaultValue: "R3",
+        defaultValue: "R1",
       },
 
       createdAt: {
