@@ -75,15 +75,15 @@ const getBook = (bid) =>
   new Promise(async (resolve, reject) => {
     try {
       const rs = await db.Book.findOne({
-        where: { id: bid },
+        where: { id: parseInt(bid) },
 
-        // include: [
-        //   {
-        //     model: db.User,
-        //     as: "user",
-        //     attributes: ["id", "name", "email"],
-        //   },
-        // ],
+        include: [
+          {
+            model: db.User,
+            as: "user",
+            attributes: ["id", "name", "email"],
+          },
+        ],
       });
       resolve({
         err: rs ? 0 : -1,
