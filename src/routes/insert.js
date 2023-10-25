@@ -3,5 +3,5 @@ import express from "express";
 const route = express.Router();
 
 //PRIVATE
-route.get("/", CT.insertDB);
+route.post("/", CT.insertDB);
 export default route;
