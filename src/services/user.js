@@ -33,8 +33,8 @@ export const updateCarts = (data, id) =>
       const alreadyCart = await db.Cart.findOne({
         where: { product: data.pid },
       });
+      console.log(alreadyCart);
 
-      // console.log(alreadyCart);
       if (!alreadyCart) {
         const rs = await db.Cart.create({
           product: data.pid,
