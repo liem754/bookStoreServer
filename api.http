@@ -1,4 +1,4 @@
-# POST  http://localhost:5000/api/v1/auth/login
+post  https://bookstoresv.onrender.com/api/v1/insert/
 # Content-Type: application/json
 
 # {
