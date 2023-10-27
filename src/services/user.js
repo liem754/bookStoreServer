@@ -31,15 +31,15 @@ export const updateCarts = (data, id) =>
   new Promise(async (resolve, reject) => {
     try {
       const alreadyCart = await db.Cart.findOne({
-        where: { product: `${data.pid}` },
+        where: { product: parseInt(data.pid) },
       });
 
       if (!alreadyCart) {
         const rs = await db.Cart.create({
-          product: `${data.pid}`,
+          product: parseInt(data.pid),
           price: data.price,
           quantity: +data.quantity,
-          userId: `${id}`,
+          userId: id,
         });
         resolve({
           success: rs ? true : false,
@@ -51,7 +51,7 @@ export const updateCarts = (data, id) =>
             price: data.price,
             quantity: +data.quantity,
           },
-          { where: { product: `${data.pid}` } }
+          { where: { product: parseInt(data.pid) } }
         );
         resolve({
           success: rss ? true : false,
@@ -67,7 +67,7 @@ export const getCarts = (id) =>
   new Promise(async (resolve, reject) => {
     try {
       const rs = await db.Cart.findAll({
-        where: { userId: id },
+        where: { userId: parseInt(id) },
         attributes: ["id", "price", "quantity"],
         include: [
           {
