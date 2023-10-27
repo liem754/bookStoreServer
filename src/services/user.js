@@ -67,15 +67,15 @@ export const getCarts = (id) =>
   new Promise(async (resolve, reject) => {
     try {
       const rs = await db.Cart.findAll({
-        where: { userId: parseInt(id) },
-        //attributes: ["id", "price", "quantity"],
-        // include: [
-        //   {
-        //     model: db.Book,
-        //     as: "book",
-        //     attributes: ["id", "title", "images", "author"],
-        //   },
-        // ],
+        where: { userId: id },
+        attributes: ["id", "price", "quantity"],
+        include: [
+          {
+            model: db.Book,
+            as: "book",
+            attributes: ["id", "title", "images", "author"],
+          },
+        ],
       });
       resolve({
         err: rs ? 0 : -1,
