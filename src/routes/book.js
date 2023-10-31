@@ -10,6 +10,8 @@ router.get("/cate/:category", book.getbookbyCategoryct);
 router.get("/all", book.getCategory);
 
 // router.get("/all", book.getCategory);
+router.put("/rating", verifyToken, book.Ratingct);
+router.get("/getrating/:pid", book.getRatingct);
 
 /// verify
 router.use(verifyToken);

@@ -165,6 +165,63 @@ const getbookbyCategory = (category) =>
       reject(error);
     }
   });
+const Rating = (data, id) =>
+  new Promise(async (resolve, reject) => {
+    try {
+      const alreadyCart = await db.Rating.findOne({
+        where: { userId: id },
+      });
+      if (!alreadyCart) {
+        const rs = await db.Cart.create({
+          product: parseInt(data.pid),
+          comment: data.comment,
+          star: +data.star,
+          userId: id,
+        });
+        resolve({
+          success: rs ? true : false,
+          mes: rs ? "Đã Thêm Vào Giỏ Hàng!" : "Some thing went wrong!",
+        });
+      } else {
+        const rss = await db.Cart.update(
+          {
+            comment: data.comment,
+            star: +data.star,
+          },
+          { where: { userId: parseInt(id) } }
+        );
+        resolve({
+          success: rss ? true : false,
+          mes: rss ? "Cập Nhập Giỏ Hàng Thành Công!" : "Some thing went wrong!",
+        });
+      }
+    } catch (error) {
+      reject(error);
+    }
+  });
+export const getRatings = (pid) =>
+  new Promise(async (resolve, reject) => {
+    try {
+      const rs = await db.Rating.findAll({
+        where: { product: pid },
+        include: [
+          {
+            model: db.User,
+            as: "userData",
+            attributes: ["id", "name", "email", "avatar"],
+          },
+        ],
+      });
+
+      resolve({
+        err: rs ? 0 : -1,
+        mes: rs ? "Thành công" : "Thất bại",
+        ratings: rs ? rs : null,
+      });
+    } catch (error) {
+      reject(error);
+    }
+  });
 module.exports = {
   createBook,
   getBooks,
@@ -173,4 +230,6 @@ module.exports = {
   updateBook,
   getCategory,
   getbookbyCategory,
+  Rating,
+  getRatings,
 };

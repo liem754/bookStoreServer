@@ -167,3 +167,34 @@ export const getCategory = async (req, res) => {
     });
   }
 };
+
+export const Ratingct = async (req, res) => {
+  const { comment, star } = req.body;
+  const { id } = req.user;
+  try {
+    if (!comment || !star)
+      return res.status(400).json({
+        err: -1,
+        mes: "Missing input!",
+      });
+    const rs = await sv.Rating(req.body, id);
+    return res.status(200).json(rs);
+  } catch (error) {
+    return res.status(500).json({
+      err: -1,
+      msg: "Failed at sv!!" + error,
+    });
+  }
+};
+export const getRatingct = async (req, res) => {
+  const { pid } = req.params;
+  try {
+    const rs = await sv.getRatings(pid);
+    return res.status(200).json(rs);
+  } catch (error) {
+    return res.status(500).json({
+      err: -1,
+      msg: "Failed at sv!!" + error,
+    });
+  }
+};
