@@ -172,7 +172,7 @@ const Rating = (data, id) =>
         where: { userId: id },
       });
       if (!alreadyCart) {
-        const rs = await db.Cart.create({
+        const rs = await db.Rating.create({
           product: parseInt(data.pid),
           comment: data.comment,
           star: +data.star,
@@ -180,10 +180,10 @@ const Rating = (data, id) =>
         });
         resolve({
           success: rs ? true : false,
-          mes: rs ? "Đã Thêm Vào Giỏ Hàng!" : "Some thing went wrong!",
+          mes: rs ? "Đánh giá thành công!" : "Some thing went wrong!",
         });
       } else {
-        const rss = await db.Cart.update(
+        const rss = await db.Rating.update(
           {
             comment: data.comment,
             star: +data.star,
@@ -192,7 +192,7 @@ const Rating = (data, id) =>
         );
         resolve({
           success: rss ? true : false,
-          mes: rss ? "Cập Nhập Giỏ Hàng Thành Công!" : "Some thing went wrong!",
+          mes: rss ? "Cập Nhập Đánh Giá Thành Công!" : "Some thing went wrong!",
         });
       }
     } catch (error) {

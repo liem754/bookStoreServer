@@ -169,7 +169,7 @@ export const getCategory = async (req, res) => {
 };
 
 export const Ratingct = async (req, res) => {
-  const { comment, star } = req.body;
+  const { comment, star, pid } = req.body;
   const { id } = req.user;
   try {
     if (!comment || !star)
