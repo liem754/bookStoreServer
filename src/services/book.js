@@ -41,15 +41,16 @@ const getBooks = ({ page, limit, category, q }) =>
       const filter = {};
       if (category) {
         filter.category = {
-          [Op.like]: `%${category}%`,
+          [Op.iLike]: `%${category}%`,
         };
       }
+
       if (q) {
         filter.category = {
           [Op.like]: `%${q}%`,
         };
       }
-
+      console.log(filter);
       const books = await db.Book.findAll({
         where: filter,
         limit: pageSize,
