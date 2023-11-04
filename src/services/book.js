@@ -41,13 +41,13 @@ const getBooks = ({ page, limit, category, q }) =>
       const filter = {};
       if (category) {
         filter.category = {
-          [Op.iLike]: `%${category}%`,
+          [Op.substring]: category,
         };
       }
 
       if (q) {
         filter.title = {
-          [Op.iLike]: `%${q}%`,
+          [Op.substring]: q,
         };
       }
       console.log(filter);
