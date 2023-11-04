@@ -169,7 +169,7 @@ const Rating = (data, id) =>
   new Promise(async (resolve, reject) => {
     try {
       const alreadyCart = await db.Rating.findOne({
-        where: { userId: id },
+        where: { userId: id, product: data.pid },
       });
       if (!alreadyCart) {
         const rs = await db.Rating.create({
