@@ -104,7 +104,7 @@ export const login = ({ email, password }) =>
               role: response.role,
             },
             process.env.JWT_KEY,
-            { expiresIn: "2d" }
+            { expiresIn: "20s" }
           )
         : null;
 
