@@ -1,5 +1,5 @@
 const db = require("../models");
-const { Op } = require("sequelize");
+const { Op, literal } = require("sequelize");
 const geneCode = require("../ultils/geneCode");
 const createBook = (data, id) =>
   new Promise(async (resolve, reject) => {
@@ -52,7 +52,7 @@ const getBooks = ({ page, limit, category, q }) =>
       }
       console.log(filter);
       const books = await db.Book.findAll({
-        where: filter,
+        where: { category: literal(`category ILIKE '%${category}%'`) },
         limit: pageSize,
         offset: offset,
       });
