@@ -11,6 +11,8 @@ const initRouter = (app) => {
   app.use("/api/v1/book", book);
   app.use("/api/v1/blog", blog);
 
-  app.use(handleNotFound);
+  return app.use("/", (req, res) => {
+    res.send("This route not defined!");
+  });
 };
 module.exports = initRouter;
