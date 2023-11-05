@@ -8,7 +8,7 @@ router.get("/", book.getBooks);
 router.get("/one/:bid", book.getBook);
 router.get("/cate/:category", book.getbookbyCategoryct);
 router.get("/all", book.getCategory);
-
+//
 // router.get("/all", book.getCategory);
 router.post("/rating", verifyToken, book.Ratingct);
 router.get("/getrating/:pid", book.getRatingct);
