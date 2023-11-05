@@ -20,4 +20,4 @@ router.post("/", upload.single("images"), book.createBooks);
 router.put("/", upload.single("images"), book.updateBook);
 router.delete("/", book.deleteBook);
 
-export default router;
+module.exports = router;
