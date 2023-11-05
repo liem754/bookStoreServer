@@ -7,7 +7,7 @@ const router = express.Router();
 router.get("/:bid", blog.getBlogct);
 router.post(
   "/",
-  { verifyToken, isAdmin },
+  (verifyToken, isAdmin),
   upload.single("images"),
   blog.createBlogct
 );
