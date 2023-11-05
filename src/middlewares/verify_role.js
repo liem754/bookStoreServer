@@ -2,6 +2,7 @@ import { handleNotAuth } from "./handle_error";
 
 export const isAdmin = (req, res, next) => {
   const { role } = req.user;
+  console.log(role);
   if (role !== "R1") return handleNotAuth("Require is admin", res);
   next();
 };
