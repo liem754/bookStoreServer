@@ -5,4 +5,4 @@ router.put("/final", auth.finalregister);
 
 router.post("/login", auth.login);
 
-module.exports = router;
+export default router;
