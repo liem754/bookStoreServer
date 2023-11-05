@@ -6,6 +6,7 @@ const verifyToken = (req, res, next) => {
   const accesstoken = token.split(" ")[1];
   jwt.verify(accesstoken, process.env.JWT_KEY, (err, user) => {
     if (err) return handleNotAuth("Access token expired", res);
+    console.log(user);
     req.user = user;
     next();
   });

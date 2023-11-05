@@ -9,11 +9,6 @@ router.get("/all", blog.getBlogcts);
 
 router.use(verifyToken);
 router.use(isAdmin);
-router.post(
-  "/",
-
-  upload.single("images"),
-  blog.createBlogct
-);
+router.post("/", upload.single("images"), blog.createBlogct);
 
 module.exports = router;
