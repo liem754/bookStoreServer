@@ -17,6 +17,3 @@ app.use(express.urlencoded({ extended: true }));
 
 initRouter(app);
 ConectDB();
-const listener = app.listen(port, () => {
-  console.log(`Server on`);
-});
