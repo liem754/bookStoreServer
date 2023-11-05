@@ -14,11 +14,6 @@ module.exports = (sequelize, DataTypes) => {
       //   targetKey: "code",
       //   as:''
       // });
-      Blog.belongsTo(models.User, {
-        foreignKey: "userId",
-        targetKey: "id",
-        as: "user",
-      });
     }
   }
   Blog.init(
