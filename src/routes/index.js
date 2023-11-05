@@ -1,6 +1,5 @@
 const auth = require("./auth");
 const user = require("./user");
-
 const insert = require("./insert");
 const book = require("./book");
 const blog = require("./blog");
