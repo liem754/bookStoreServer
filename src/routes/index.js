@@ -1,4 +1,3 @@
-const { handleNotFound } = require("../middlewares/handle_error");
 import auth from "./auth";
 import user from "./user";
 import insert from "./insert";
