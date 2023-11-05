@@ -1,6 +1,7 @@
 const upload = require("../config/cloudinary.config");
 const { default: verifyToken } = require("../middlewares/verify_token");
 const CT = require("../controller");
+const express = require("express");
 const route = express.Router();
 route.use(verifyToken);
 route.post("/update", CT.updateCart);
